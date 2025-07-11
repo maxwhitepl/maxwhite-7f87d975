@@ -1,9 +1,11 @@
 import { useState } from 'react';
-import { Menu, X, Code2, ExternalLink } from 'lucide-react';
+import { Menu, X, Code2, ExternalLink, Sun, Moon } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import { useTheme } from '@/components/ThemeProvider';
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const { theme, toggleTheme } = useTheme();
 
   const menuItems = [
     { name: 'Home', href: '#home' },
@@ -37,8 +39,20 @@ const Navbar = () => {
             ))}
           </div>
 
-          {/* Contact Button */}
-          <div className="hidden md:block">
+          {/* Theme Toggle & Contact Button */}
+          <div className="hidden md:flex items-center space-x-4">
+            <Button
+              variant="ghost"
+              size="sm"
+              onClick={toggleTheme}
+              className="glass-card hover-glow p-2 h-10 w-10"
+            >
+              {theme === 'light' ? (
+                <Moon className="h-4 w-4" />
+              ) : (
+                <Sun className="h-4 w-4" />
+              )}
+            </Button>
             <Button 
               variant="outline" 
               className="neon-glow hover-glow border-primary/50 text-primary hover:bg-primary hover:text-primary-foreground"
@@ -72,6 +86,24 @@ const Navbar = () => {
                   {item.name}
                 </a>
               ))}
+              
+              {/* Mobile Theme Toggle */}
+              <div className="flex items-center justify-between py-2">
+                <span className="text-foreground">Tryb ciemny</span>
+                <Button
+                  variant="ghost"
+                  size="sm"
+                  onClick={toggleTheme}
+                  className="glass-card p-2 h-8 w-8"
+                >
+                  {theme === 'light' ? (
+                    <Moon className="h-4 w-4" />
+                  ) : (
+                    <Sun className="h-4 w-4" />
+                  )}
+                </Button>
+              </div>
+              
               <Button 
                 variant="outline" 
                 className="mt-4 neon-glow border-primary/50 text-primary hover:bg-primary hover:text-primary-foreground"
