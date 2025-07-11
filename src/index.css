@@ -8,33 +8,33 @@ All colors MUST be HSL.
 
 @layer base {
   :root {
-    /* Dark theme optimized colors */
-    --background: 224 71% 4%;
-    --foreground: 213 31% 91%;
+    /* Dark theme with white text */
+    --background: 220 13% 9%;
+    --foreground: 0 0% 95%;
 
-    --card: 224 71% 6%;
-    --card-foreground: 213 31% 91%;
+    --card: 220 13% 11%;
+    --card-foreground: 0 0% 95%;
 
-    --popover: 224 71% 6%;
-    --popover-foreground: 213 31% 91%;
+    --popover: 220 13% 11%;
+    --popover-foreground: 0 0% 95%;
 
     --primary: 263 70% 50%;
-    --primary-foreground: 210 40% 98%;
+    --primary-foreground: 0 0% 100%;
 
-    --secondary: 215 25% 27%;
-    --secondary-foreground: 213 31% 91%;
+    --secondary: 215 25% 15%;
+    --secondary-foreground: 0 0% 95%;
 
-    --muted: 215 25% 15%;
+    --muted: 215 25% 12%;
     --muted-foreground: 217 10% 65%;
 
     --accent: 142 71% 45%;
-    --accent-foreground: 224 71% 4%;
+    --accent-foreground: 220 13% 9%;
 
     --destructive: 0 84% 60%;
-    --destructive-foreground: 210 40% 98%;
+    --destructive-foreground: 0 0% 100%;
 
     --border: 215 25% 20%;
-    --input: 215 25% 20%;
+    --input: 215 25% 15%;
     --ring: 263 70% 50%;
 
     --radius: 1rem;
@@ -45,8 +45,8 @@ All colors MUST be HSL.
     --gradient-end: 142 71% 45%;
     
     /* Glassmorphism effects */
-    --glass-bg: 224 71% 6% / 0.7;
-    --glass-border: 213 31% 91% / 0.1;
+    --glass-bg: 220 13% 11% / 0.7;
+    --glass-border: 0 0% 95% / 0.1;
     
     /* Neon glow effects */
     --neon-purple: 263 70% 50%;
@@ -71,41 +71,34 @@ All colors MUST be HSL.
   }
 
   .dark {
-    --background: 222.2 84% 4.9%;
-    --foreground: 210 40% 98%;
+    /* Ensure dark mode keeps the same values */
+    --background: 220 13% 9%;
+    --foreground: 0 0% 95%;
 
-    --card: 222.2 84% 4.9%;
-    --card-foreground: 210 40% 98%;
+    --card: 220 13% 11%;
+    --card-foreground: 0 0% 95%;
 
-    --popover: 222.2 84% 4.9%;
-    --popover-foreground: 210 40% 98%;
+    --popover: 220 13% 11%;
+    --popover-foreground: 0 0% 95%;
 
-    --primary: 210 40% 98%;
-    --primary-foreground: 222.2 47.4% 11.2%;
+    --primary: 263 70% 50%;
+    --primary-foreground: 0 0% 100%;
 
-    --secondary: 217.2 32.6% 17.5%;
-    --secondary-foreground: 210 40% 98%;
+    --secondary: 215 25% 15%;
+    --secondary-foreground: 0 0% 95%;
 
-    --muted: 217.2 32.6% 17.5%;
-    --muted-foreground: 215 20.2% 65.1%;
+    --muted: 215 25% 12%;
+    --muted-foreground: 217 10% 65%;
 
-    --accent: 217.2 32.6% 17.5%;
-    --accent-foreground: 210 40% 98%;
+    --accent: 142 71% 45%;
+    --accent-foreground: 220 13% 9%;
 
-    --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 210 40% 98%;
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
 
-    --border: 217.2 32.6% 17.5%;
-    --input: 217.2 32.6% 17.5%;
-    --ring: 212.7 26.8% 83.9%;
-    --sidebar-background: 240 5.9% 10%;
-    --sidebar-foreground: 240 4.8% 95.9%;
-    --sidebar-primary: 224.3 76.3% 48%;
-    --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 240 3.7% 15.9%;
-    --sidebar-accent-foreground: 240 4.8% 95.9%;
-    --sidebar-border: 240 3.7% 15.9%;
-    --sidebar-ring: 217.2 91.2% 59.8%;
+    --border: 215 25% 20%;
+    --input: 215 25% 15%;
+    --ring: 263 70% 50%;
   }
 }
 
@@ -117,11 +110,11 @@ All colors MUST be HSL.
   body {
     @apply bg-background text-foreground overflow-x-hidden;
     background: linear-gradient(135deg, 
-      hsl(var(--background)) 0%, 
-      hsl(var(--gradient-start) / 0.1) 25%,
-      hsl(var(--gradient-middle) / 0.05) 50%,
-      hsl(var(--gradient-end) / 0.1) 75%,
-      hsl(var(--background)) 100%
+      hsl(220 13% 9%) 0%, 
+      hsl(263 70% 50% / 0.1) 25%,
+      hsl(280 100% 70% / 0.05) 50%,
+      hsl(142 71% 45% / 0.1) 75%,
+      hsl(220 13% 9%) 100%
     );
     background-attachment: fixed;
   }
@@ -129,11 +122,13 @@ All colors MUST be HSL.
 
 @layer components {
   .glass-card {
-    @apply backdrop-blur-lg bg-card/70 border border-white/10 rounded-2xl shadow-2xl;
+    @apply backdrop-blur-lg border rounded-2xl shadow-2xl;
+    background: hsl(var(--card) / 0.8);
+    border-color: hsl(var(--border) / 0.5);
   }
   
   .neon-glow {
-    @apply shadow-[0_0_20px_hsl(var(--primary)/0.3)];
+    box-shadow: 0 0 20px hsl(var(--primary) / 0.3);
   }
   
   .gradient-text {
@@ -141,7 +136,11 @@ All colors MUST be HSL.
   }
   
   .hover-glow {
-    @apply transition-all duration-300 hover:shadow-[0_0_30px_hsl(var(--primary)/0.4)] hover:scale-105;
+    @apply transition-all duration-300 hover:scale-105;
+  }
+  
+  .hover-glow:hover {
+    box-shadow: 0 0 30px hsl(var(--primary) / 0.4);
   }
   
   .floating-animation {
